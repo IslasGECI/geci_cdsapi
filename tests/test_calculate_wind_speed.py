@@ -1,4 +1,4 @@
-from geci_cdsapi import read_nc_file
+from geci_cdsapi.calculate_wind_speed import read_nc_file
 
 
 def test_nc_file():
