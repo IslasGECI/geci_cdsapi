@@ -13,8 +13,8 @@ all: check coverage mutants
 		setup \
 		tests
 
-module = dummy_transformations
-codecov_token = 6c56bccb-1758-4ed9-8161-97c845591c26
+module = geci_cdsapi
+codecov_token = 63235227-34c2-4d6c-8861-90a795fcf112
 
 define lint
 	pylint \
@@ -49,7 +49,9 @@ format:
 	black --line-length 100 ${module}
 	black --line-length 100 tests
 
-init: setup tests
+init: init_git setup tests
+
+init_git:
 	git config --global --add safe.directory /workdir
 	git config --global user.name "Ciencia de Datos • GECI"
 	git config --global user.email "ciencia.datos@islas.org.mx"

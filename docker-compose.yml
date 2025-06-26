@@ -1,10 +1,9 @@
-version: "3.1"
 services:
   islasgeci:
     build:
       context: .
       dockerfile: Dockerfile
-    image: islasgeci/dummy_transformations:latest
+    image: islasgeci/geci_cdsapi:latest
     command: bash
     volumes:
       - $PWD:/workdir
