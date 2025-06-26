@@ -1,7 +1,45 @@
-from geci_cdsapi.calculate_wind_speed import read_nc_file
+from geci_cdsapi.calculate_wind_speed import calculate_wind_speed, read_nc_file
+import xarray as xr
+import numpy as np
 
 
 def test_nc_file():
     nc_path = "tests/data/era5_wind_sanbenito_2013.nc"
     obtained = read_nc_file(nc_path)
+    assert set(["u10", "v10", "wind_speed"]) == set(list(obtained.keys()))
+
+
+def test_calculate_wind_speed():
+    dataset = xr.Dataset(
+        {
+            "u10": (
+                ("valid_time", "latitude", "longitude"),
+                np.array(
+                    [
+                        [[1, 2, 3, 4], [5, 6, 7, 8]],
+                        [[1, 2, 3, 4], [5, 6, 7, 8]],
+                        [[1, 2, 3, 4], [5, 6, 7, 8]],
+                    ]
+                ),
+            ),
+            "v10": (
+                ("valid_time", "latitude", "longitude"),
+                np.array(
+                    [
+                        [[5, 6, 7, 8], [1, 2, 3, 4]],
+                        [[1, 2, 3, 4], [5, 6, 7, 8]],
+                        [[1, 2, 3, 4], [5, 6, 7, 8]],
+                    ]
+                ),
+            ),
+        },
+        coords={
+            "valid_time": np.array(
+                ["2023-01-01", "2023-01-02", "2023-01-03"], dtype="datetime64[ns]"
+            ),
+            "latitude": [10, 20],
+            "longitude": [30, 40, 50, 60],
+        },
+    )
+    obtained = calculate_wind_speed(dataset)
     assert set(["u10", "v10", "wind_speed"]) == set(list(obtained.keys()))
