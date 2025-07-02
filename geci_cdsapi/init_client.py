@@ -18,7 +18,7 @@ def construct_request(start_year, end_year, island):
         "year": years,
         "month": ["07", "08", "09", "10", "11"],
         "day": ["01"],
-        "time": ["00:00"],
+        "time": [f"{h:02d}:00" for h in range(0, 24)],
         "format": "netcdf",
         "area": areas[island],
     }
