@@ -17,7 +17,7 @@ def construct_request(start_year, end_year, island):
         "variable": ["10m_u_component_of_wind"],
         "year": years,
         "month": ["07", "08", "09", "10", "11"],
-        "day": ["01"],
+        "day": [f"{i:02d}" for i in range(1, 32)],
         "time": [f"{h:02d}:00" for h in range(0, 24)],
         "format": "netcdf",
         "area": areas[island],
