@@ -2,10 +2,11 @@ from geci_cdsapi.calculate_wind_speed import calculate_wind_speed, read_nc_file,
 import xarray as xr
 import numpy as np
 
+nc_dataset = xr.open_dataset("tests/data/era5_wind_sanbenito_2013.nc")
+
 
 def test_nc_file():
-    nc_path = "tests/data/era5_wind_sanbenito_2013.nc"
-    obtained = read_nc_file(nc_path)
+    obtained = read_nc_file(nc_dataset)
     assert set(["u10", "v10", "wind_speed"]) == set(list(obtained.keys()))
     expected_shape = (5,)
     assert obtained.wind_speed.shape == expected_shape
