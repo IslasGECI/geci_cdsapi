@@ -24,6 +24,8 @@ def test_construct_request():
     obtained = construct_request(start_year, end_year)
     expected_year = [f"{start_year}", f"{end_year}"]
     assert obtained["year"] == expected_year
+    assert obtained["month"][0] == "07"
+    assert obtained["month"][-1] == "11"
 
 
 def test_load_access_key():
