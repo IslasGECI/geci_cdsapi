@@ -8,13 +8,13 @@ def download_wind_netcdf_by_year(year, output_path):
 
     request_params = {
         "product_type": "reanalysis",
-        "variable": ["10m_u_component_of_wind", "10m_v_component_of_wind"],
+        "variable": ["10m_u_component_of_wind"],
         "year": [str(year)],
         "month": ["06"],
         "day": ["01"],
         "time": ["00:00"],
         "format": "netcdf",
-        "area": [32.35, -120.3, 24.25, -110.9],
+        "area": [32, -120, 31.5, -119.5],
     }
     client.retrieve(dataset, request_params, output_path)
 
