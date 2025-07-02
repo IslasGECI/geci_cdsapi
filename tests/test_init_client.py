@@ -31,6 +31,9 @@ def test_construct_request():
     has_24_hours = len(obtained["time"]) == 24
     assert has_24_hours
     assert obtained["time"][0] == "00:00"
+    has_all_days = len(obtained["day"]) == 31
+    assert has_all_days
+    assert obtained["day"][0] == "01"
 
 
 def test_load_access_key():
