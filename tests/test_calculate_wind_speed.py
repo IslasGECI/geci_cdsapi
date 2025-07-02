@@ -1,6 +1,6 @@
 from geci_cdsapi.calculate_wind_speed import (
-    calculate_wind_speed,
     calculate_monthly_wind_speed,
+    calculate_wind_speed,
     mean_by_month,
 )
 import xarray as xr

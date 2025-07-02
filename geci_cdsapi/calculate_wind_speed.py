@@ -1,9 +1,4 @@
-import xarray as xr
 import numpy as np
-
-
-def read_nc_file(nc):
-    return calculate_monthly_wind_speed(nc)
 
 
 def calculate_monthly_wind_speed(nc):
