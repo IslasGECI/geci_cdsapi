@@ -9,11 +9,12 @@ def download_wind_netcdf_by_year(year, output_path):
     client.retrieve(dataset, request_params, output_path)
 
 
-def construct_request(year):
+def construct_request(start_year, end_year):
+    years = [str(year) for year in range(start_year, end_year + 1)]
     request_params = {
         "product_type": "reanalysis",
         "variable": ["10m_u_component_of_wind"],
-        "year": [str(year)],
+        "year": years,
         "month": ["06"],
         "day": ["01"],
         "time": ["00:00"],
