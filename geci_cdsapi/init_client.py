@@ -5,7 +5,11 @@ import os
 def download_wind_netcdf_by_year(year, output_path):
     client = init_client()
     dataset = "reanalysis-era5-single-levels"
+    request_params = construct_request(year)
+    client.retrieve(dataset, request_params, output_path)
 
+
+def construct_request(year):
     request_params = {
         "product_type": "reanalysis",
         "variable": ["10m_u_component_of_wind"],
@@ -16,7 +20,7 @@ def download_wind_netcdf_by_year(year, output_path):
         "format": "netcdf",
         "area": [32, -120, 31.5, -119.5],
     }
-    client.retrieve(dataset, request_params, output_path)
+    return request_params
 
 
 def init_client():
