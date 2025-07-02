@@ -44,8 +44,7 @@ dataset = xr.Dataset(
 
 def test_calculate_wind_speed():
     obtained = calculate_wind_speed(dataset)
-    assert set(["u10", "v10", "wind_speed"]) == set(list(obtained.keys()))
-    obtained_wind_speed_first_day_and_position = obtained["wind_speed"][0, 0, 0].values
+    obtained_wind_speed_first_day_and_position = obtained[0, 0, 0].values
     assert np.sqrt(1**2 + 5**2) == obtained_wind_speed_first_day_and_position
 
 
