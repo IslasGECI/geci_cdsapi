@@ -30,6 +30,7 @@ def test_construct_request():
     assert obtained["area"] == [32.35, -120.3, 24.25, -110.9]
     has_24_hours = len(obtained["time"]) == 24
     assert has_24_hours
+    assert obtained["time"][0] == "00:00"
 
 
 def test_load_access_key():
