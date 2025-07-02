@@ -21,11 +21,13 @@ def test_download_wind_netcdf_by_year():
 def test_construct_request():
     start_year = 2014
     end_year = 2015
-    obtained = construct_request(start_year, end_year)
+    island = "San Benito"
+    obtained = construct_request(start_year, end_year, island)
     expected_year = [f"{start_year}", f"{end_year}"]
     assert obtained["year"] == expected_year
     assert obtained["month"][0] == "07"
     assert obtained["month"][-1] == "11"
+    assert obtained["area"] == [32.35, -120.3, 24.25, -110.9]
 
 
 def test_load_access_key():
