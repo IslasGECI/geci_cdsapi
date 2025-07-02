@@ -14,7 +14,7 @@ def construct_request(start_year, end_year, island):
     areas = {"San Benito": [32.35, -120.3, 24.25, -110.9]}
     request_params = {
         "product_type": "reanalysis",
-        "variable": ["10m_u_component_of_wind"],
+        "variable": ["10m_u_component_of_wind", "10m_v_component_of_wind"],
         "year": years,
         "month": ["07", "08", "09", "10", "11"],
         "day": [f"{i:02d}" for i in range(1, 32)],
