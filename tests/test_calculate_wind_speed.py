@@ -50,4 +50,4 @@ def test_calculate_wind_speed():
 def test_mean_by_month():
     obtained = mean_by_month(dataset)
 
-    assert len(obtained.u10) == 13
+    assert obtained.u10.shape == (13,)
