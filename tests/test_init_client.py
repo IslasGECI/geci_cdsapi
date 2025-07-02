@@ -19,9 +19,10 @@ def test_download_wind_netcdf_by_year():
 
 
 def test_construct_request():
-    year = 2014
-    obtained = construct_request(year)
-    expected_year = [f"{year}"]
+    start_year = 2014
+    end_year = 2015
+    obtained = construct_request(start_year, end_year)
+    expected_year = [f"{start_year}", f"{end_year}"]
     assert obtained["year"] == expected_year
 
 
