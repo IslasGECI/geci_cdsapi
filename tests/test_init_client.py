@@ -35,6 +35,8 @@ def test_construct_request():
     assert has_all_days
     assert obtained["day"][0] == "01"
     assert obtained["variable"] == ["10m_u_component_of_wind", "10m_v_component_of_wind"]
+    assert obtained["product_type"] == "reanalysis"
+    assert obtained["format"] == "netcdf"
 
 
 def test_load_access_key():
