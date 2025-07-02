@@ -12,18 +12,20 @@ import pytest
 
 @pytest.mark.skipif(os.getenv("GITHUB_ACTIONS") is None, reason="Solo se ejecuta en GitHub Actions")
 def test_download_wind_netcdf_by_year():
+    start_year = 2013
+    end_year = 2013
+    island = "San Benito"
     output_path = "tests/wind_2013.nc"
-    download_wind_netcdf_by_year(2013, output_path)
+    download_wind_netcdf_by_year(start_year, end_year, island, output_path)
     gtt.assert_exist(output_path)
     gtt.if_exist_remove(output_path)
 
 
 def test_construct_request():
-    start_year = 2014
-    end_year = 2015
+    year = 2014
     island = "San Benito"
-    obtained = construct_request(start_year, end_year, island)
-    expected_year = [f"{start_year}", f"{end_year}"]
+    obtained = construct_request(year, island)
+    expected_year = [f"{year}"]
     assert obtained["year"] == expected_year
     assert obtained["month"][0] == "07"
     assert obtained["month"][-1] == "11"
