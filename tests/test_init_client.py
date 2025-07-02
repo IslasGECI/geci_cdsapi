@@ -28,6 +28,8 @@ def test_construct_request():
     assert obtained["month"][0] == "07"
     assert obtained["month"][-1] == "11"
     assert obtained["area"] == [32.35, -120.3, 24.25, -110.9]
+    has_24_hours = len(obtained["time"]) == 24
+    assert has_24_hours
 
 
 def test_load_access_key():
