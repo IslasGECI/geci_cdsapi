@@ -7,6 +7,7 @@ def test_download_wind_netcdf_by_year():
     output_path = "tests/wind_2013.nc"
     obtained = download_wind_netcdf_by_year(2013, output_path)
     gtt.assert_exist(output_path)
+    gtt.if_exist_remove(output_path)
 
 
 def test_load_access_key():
