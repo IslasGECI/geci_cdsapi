@@ -14,4 +14,4 @@ def calculate_wind_speed(dataset):
 
 
 def mean_by_month(dataset):
-    return dataset.mean(dim=["latitude", "longitude"]).resample(valid_time="1M").mean()
+    return dataset.mean(dim=["latitude", "longitude"]).resample(valid_time="ME").mean()
