@@ -4,8 +4,8 @@ import numpy as np
 
 def read_nc_file(nc_path):
     nc = xr.open_dataset(nc_path)
-    nc["wind_speed"] = np.sqrt(nc["u10"] ** 2 + nc["v10"] ** 2)
-    return nc
+    nc = calculate_wind_speed(nc)
+    return mean_by_month(nc)
 
 
 def calculate_wind_speed(dataset):
