@@ -15,7 +15,7 @@ def construct_request(start_year, end_year):
         "product_type": "reanalysis",
         "variable": ["10m_u_component_of_wind"],
         "year": years,
-        "month": ["06"],
+        "month": ["07", "08", "09", "10", "11"],
         "day": ["01"],
         "time": ["00:00"],
         "format": "netcdf",
