@@ -20,6 +20,12 @@ def test_monthly_wind_average():
         cli,
         [
             "monthly-wind-average",
+            "--start-year",
+            2012,
+            "--end-year",
+            2013,
+            "--island",
+            "San Benito",
             "--output-path",
             output_path,
         ],
