@@ -34,6 +34,7 @@ def test_construct_request():
     has_all_days = len(obtained["day"]) == 31
     assert has_all_days
     assert obtained["day"][0] == "01"
+    assert obtained["variable"] == ["10m_u_component_of_wind", "10m_v_component_of_wind"]
 
 
 def test_load_access_key():
