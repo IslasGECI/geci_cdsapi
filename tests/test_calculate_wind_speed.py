@@ -7,6 +7,8 @@ def test_nc_file():
     nc_path = "tests/data/era5_wind_sanbenito_2013.nc"
     obtained = read_nc_file(nc_path)
     assert set(["u10", "v10", "wind_speed"]) == set(list(obtained.keys()))
+    expected_shape = (5,)
+    assert obtained.wind_speed.shape == expected_shape
 
 
 dataset = xr.Dataset(
@@ -49,5 +51,5 @@ def test_calculate_wind_speed():
 
 def test_mean_by_month():
     obtained = mean_by_month(dataset)
-
-    assert obtained.u10.shape == (13,)
+    expected_shape = (13,)
+    assert obtained.u10.shape == expected_shape
