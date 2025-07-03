@@ -63,7 +63,7 @@ dataset = xr.Dataset(
 def test_write_windspeed_dataset_to_csv():
     output_path = "tests/data/monthly_wind_speed.csv"
     write_windspeed_dataset_to_csv(dataset, output_path)
-    gtt.assert_file_exists(output_path)
+    gtt.assert_exist(output_path)
 
 
 def test_calculate_wind_speed():
