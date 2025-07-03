@@ -51,6 +51,8 @@ def test_write_windspeed_dataset_to_csv():
     obtained = pd.read_csv(output_path)
     expected_rows = 9
     assert len(obtained) == expected_rows
+    expected_columns = ["Índice", "Año", "Mes/Periodo", "Valor"]
+    assert set(obtained.columns) == set(expected_columns)
 
 
 def test_calculate_monthly_wind_speed():
