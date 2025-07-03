@@ -44,8 +44,6 @@ jobs:
       run: docker run islasgeci/geci_cdsapi:latest make check
     - name: Corre pruebas y evalúa cobertura
       run: docker run --volume $PWD:/workdir --env CDSAPI_KEY=${{ secrets.CDSAPI_KEY }} islasgeci/geci_cdsapi:latest make coverage
-    - name: Corre mutantes
-      run: docker run --volume $PWD:/workdir islasgeci/geci_cdsapi:latest make mutants
     - name: Upload coverage reports to Codecov with GitHub Action
       uses: codecov/codecov-action@main
       with:
@@ -87,3 +85,23 @@ jobs:
       with:
         password: ${{ secrets.PYPI_TOKEN }}
         skip-existing: true
+
+
+  mutants:
+    runs-on: ubuntu-latest
+    name: 👾👾🤺 Run mutation testing 
+    needs: test-module
+    steps:
+    - name: Copia repositorio
+      uses: actions/checkout@main
+    - name: Download artifact
+      uses: actions/download-artifact@main
+      with:
+        name: image
+        path: /tmp
+    - name: Load image
+      run: |
+        docker load --input /tmp/image.tar
+        docker image ls -a
+    - name: Corre mutantes
+      run: docker run --volume $PWD:/workdir --env CDSAPI_KEY=${{ secrets.CDSAPI_KEY }} islasgeci/geci_cdsapi:latest make mutants
