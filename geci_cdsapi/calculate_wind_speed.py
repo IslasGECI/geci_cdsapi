@@ -1,5 +1,6 @@
 import numpy as np
 import xarray as xr
+import pandas as pd
 
 
 def read_and_calculate_wind_speed(years, island, directory_path):
@@ -10,8 +11,15 @@ def read_and_calculate_wind_speed(years, island, directory_path):
 
 
 def write_windspeed_dataset_to_csv(dataset, output_path):
-    windspeed_df = dataset.to_dataframe()
-    windspeed_df.to_csv(output_path)
+    windspeed_df = dataset.to_dataframe().reset_index()
+    windspeed_df_longer = pd.melt(
+        windspeed_df,
+        id_vars=["valid_time"],
+        value_vars=["u10", "v10", "wind_speed"],
+        var_name="Índice",
+        value_name="Valor",
+    )
+    windspeed_df_longer.to_csv(output_path)
 
 
 def calculate_monthly_wind_speed(nc):
