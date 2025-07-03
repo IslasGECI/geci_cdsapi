@@ -53,6 +53,7 @@ def test_write_windspeed_dataset_to_csv():
     assert len(obtained) == expected_rows
     expected_columns = ["Índice", "Año", "Mes/Periodo", "Valor"]
     assert set(obtained.columns) == set(expected_columns)
+    assert obtained["Mes/Periodo"][0] == "Jan"
 
 
 def test_calculate_monthly_wind_speed():
