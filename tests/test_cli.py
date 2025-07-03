@@ -31,4 +31,7 @@ def test_monthly_wind_average():
         ],
     )
     gtt.assert_exist(output_path)
+    nc_files = ["San Benito_wind_2012.nc", "San Benito_wind_2013.nc"]
+    for nc_file in nc_files:
+        gtt.assert_exist(f"tests/{nc_file}")
     assert result.exit_code == 0
