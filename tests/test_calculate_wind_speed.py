@@ -2,6 +2,7 @@ from geci_cdsapi.calculate_wind_speed import (
     calculate_monthly_wind_speed,
     calculate_wind_speed,
     mean_by_month,
+    read_and_calculate_wind_speed,
 )
 import xarray as xr
 import numpy as np
@@ -12,7 +13,8 @@ nc_dataset = xr.open_dataset("tests/data/era5_wind_sanbenito_2013.nc")
 def tests_read_and_calculate_wind_speed():
     directory_path = "tests/data"
     year = [2013]
-    obtained = read_and_calculate_wind_speed(year, island="San Benito", directory_path)
+    island = "San Benito"
+    obtained = read_and_calculate_wind_speed(year, island, directory_path)
     expected_shape = (5,)
     assert obtained.wind_speed.shape == expected_shape
 
