@@ -22,6 +22,33 @@ def tests_read_and_calculate_wind_speed():
     assert obtained.wind_speed.shape == expected_shape
 
 
+dataset_monthly_wind_speed = xr.Dataset(
+    {
+        "u10": (
+            ("valid_time"),
+            np.array([1, 2, 3]),
+        ),
+        "v10": (
+            ("valid_time"),
+            np.array([4, 5, 6]),
+        ),
+        "wind_speed": (
+            ("valid_time"),
+            np.array([7, 8, 9]),
+        ),
+    },
+    coords={
+        "valid_time": np.array(["2023-01-31", "2023-02-28", "2024-01-31"], dtype="datetime64[ns]"),
+    },
+)
+
+
+def test_write_windspeed_dataset_to_csv():
+    output_path = "tests/data/monthly_wind_speed.csv"
+    write_windspeed_dataset_to_csv(dataset_monthly_wind_speed, output_path)
+    gtt.assert_exist(output_path)
+
+
 def test_calculate_monthly_wind_speed():
     obtained = calculate_monthly_wind_speed(nc_dataset)
     assert set(["u10", "v10", "wind_speed"]) == set(list(obtained.keys()))
@@ -58,12 +85,6 @@ dataset = xr.Dataset(
         "longitude": [30, 40, 50, 60],
     },
 )
-
-
-def test_write_windspeed_dataset_to_csv():
-    output_path = "tests/data/monthly_wind_speed.csv"
-    write_windspeed_dataset_to_csv(dataset, output_path)
-    gtt.assert_exist(output_path)
 
 
 def test_calculate_wind_speed():
