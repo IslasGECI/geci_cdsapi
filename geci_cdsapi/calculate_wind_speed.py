@@ -20,7 +20,7 @@ def write_windspeed_dataset_to_csv(dataset, output_path):
         value_name="Valor",
     )
     windspeed_df_longer["Año"] = windspeed_df_longer["valid_time"].dt.year
-    windspeed_df_longer["Mes/Periodo"] = windspeed_df_longer["valid_time"].dt.month
+    windspeed_df_longer["Mes/Periodo"] = windspeed_df_longer["valid_time"].dt.month_name().str[:3]
     windspeed_df_longer = windspeed_df_longer.drop(columns=["valid_time"])
     windspeed_df_longer.to_csv(output_path, index=False)
 
