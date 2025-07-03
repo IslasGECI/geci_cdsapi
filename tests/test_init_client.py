@@ -5,11 +5,12 @@ from geci_cdsapi.init_client import (
     construct_request,
 )
 
+import os
 import pytest
 from pathlib import Path
 
 
-# @pytest.mark.skipif(os.getenv("GITHUB_ACTIONS") is None, reason="Solo se ejecuta en GitHub Actions")
+@pytest.mark.skipif(os.getenv("GITHUB_ACTIONS") is None, reason="Solo se ejecuta en GitHub Actions")
 def test_download_wind_netcdf_by_year():
     year = [2013, 2014]
     island = "San Benito"
