@@ -1,4 +1,11 @@
 import numpy as np
+import xarray as xr
+
+
+def read_and_calculate_wind_speed(years, island, directory_path):
+    for year in years:
+        nc = xr.open_dataset(f"{directory_path}/{island}_wind_{year}.nc")
+        return calculate_monthly_wind_speed(nc)
 
 
 def calculate_monthly_wind_speed(nc):
