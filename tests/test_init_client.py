@@ -4,21 +4,20 @@ from geci_cdsapi.init_client import (
     download_wind_netcdf_by_year,
     construct_request,
 )
-import geci_test_tools as gtt
 
-import os
 import pytest
+from pathlib import Path
 
 
-@pytest.mark.skipif(os.getenv("GITHUB_ACTIONS") is None, reason="Solo se ejecuta en GitHub Actions")
+# @pytest.mark.skipif(os.getenv("GITHUB_ACTIONS") is None, reason="Solo se ejecuta en GitHub Actions")
 def test_download_wind_netcdf_by_year():
-    start_year = 2013
-    end_year = 2013
+    year = 2013
     island = "San Benito"
-    output_path = "tests/wind_2013.nc"
-    download_wind_netcdf_by_year(start_year, end_year, island, output_path)
-    gtt.assert_exist(output_path)
-    gtt.if_exist_remove(output_path)
+    directory_path = "tests/"
+    download_wind_netcdf_by_year(year, island, directory_path)
+    path = Path(directory_path)
+    data_2013 = path / "San_Benito_wind_2013.nc"
+    assert data_2013.exists()
 
 
 def test_construct_request():
