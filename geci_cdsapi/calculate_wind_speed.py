@@ -9,6 +9,11 @@ def read_and_calculate_wind_speed(years, island, directory_path):
     return monthly_wind_dataset.dropna(dim="valid_time")
 
 
+def write_windspeed_dataset_to_csv(dataset, output_path):
+    windspeed_df = dataset.to_dataframe()
+    windspeed_df.to_csv(output_path)
+
+
 def calculate_monthly_wind_speed(nc):
     nc["wind_speed"] = calculate_wind_speed(nc)
     return mean_by_month(nc)
