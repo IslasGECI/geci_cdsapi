@@ -11,13 +11,15 @@ from pathlib import Path
 
 # @pytest.mark.skipif(os.getenv("GITHUB_ACTIONS") is None, reason="Solo se ejecuta en GitHub Actions")
 def test_download_wind_netcdf_by_year():
-    year = 2013
+    year = [2013, 2014]
     island = "San Benito"
     directory_path = "tests"
     download_wind_netcdf_by_year(year, island, directory_path)
     path = Path(directory_path)
     data_2013 = path / "San Benito_wind_2013.nc"
     assert data_2013.exists()
+    data_2014 = path / "San Benito_wind_2014.nc"
+    assert data_2014.exists()
 
 
 def test_construct_request():
