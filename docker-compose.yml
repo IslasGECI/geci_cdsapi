@@ -7,3 +7,5 @@ services:
     command: bash
     volumes:
       - $PWD:/workdir
+    environment:
+      CDSAPI_KEY: $CDSAPI_KEY
