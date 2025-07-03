@@ -47,6 +47,9 @@ def test_write_windspeed_dataset_to_csv():
     output_path = "tests/data/monthly_wind_speed.csv"
     write_windspeed_dataset_to_csv(dataset_monthly_wind_speed, output_path)
     gtt.assert_exist(output_path)
+    obtained = pd.read_csv(output_path)
+    expected_rows = 9
+    assert len(obtained) == expected_rows
 
 
 def test_calculate_monthly_wind_speed():
