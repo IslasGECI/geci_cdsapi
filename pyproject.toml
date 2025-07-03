@@ -19,3 +19,8 @@ requires-python=">=3.9"
 [tool.mutmut]
 paths_to_mutate = [ "geci_cdsapi/" ]
 tests_dir = [ "tests/" ]
+
+[[tool.mypy.overrides]]
+module = ["cdsapi.*","geci_test_tools.*"]
+ignore_missing_imports = true
+
