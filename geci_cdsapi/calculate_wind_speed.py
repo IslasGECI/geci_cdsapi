@@ -12,11 +12,15 @@ def read_and_calculate_wind_speed(years, island, directory_path):
 
 def write_windspeed_dataset_to_csv(dataset, output_path):
     windspeed_df_longer = transform_to_longer_df(dataset)
-    windspeed_df_longer["Año"] = windspeed_df_longer["valid_time"].dt.year
-    windspeed_df_longer["Mes/Periodo"] = windspeed_df_longer["valid_time"].dt.month_name().str[:3]
+    extract_month_and_year_into_columns(windspeed_df_longer)
     windspeed_df_longer.loc[:, ["Índice", "Año", "Mes/Periodo", "Valor"]].to_csv(
         output_path, index=False
     )
+
+
+def extract_month_and_year_into_columns(windspeed_df_longer):
+    windspeed_df_longer["Año"] = windspeed_df_longer["valid_time"].dt.year
+    windspeed_df_longer["Mes/Periodo"] = windspeed_df_longer["valid_time"].dt.month_name().str[:3]
 
 
 def transform_to_longer_df(dataset):
