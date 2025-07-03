@@ -9,7 +9,7 @@ import numpy as np
 nc_dataset = xr.open_dataset("tests/data/era5_wind_sanbenito_2013.nc")
 
 
-def test_nc_file():
+def test_calculate_monthly_wind_speed():
     obtained = calculate_monthly_wind_speed(nc_dataset)
     assert set(["u10", "v10", "wind_speed"]) == set(list(obtained.keys()))
     expected_shape = (5,)
