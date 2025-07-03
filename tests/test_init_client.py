@@ -16,7 +16,7 @@ def test_download_wind_netcdf_by_year():
     directory_path = "tests"
     download_wind_netcdf_by_year(year, island, directory_path)
     path = Path(directory_path)
-    data_2013 = path / "San_Benito_wind_2013.nc"
+    data_2013 = path / "San Benito_wind_2013.nc"
     assert data_2013.exists()
 
 
