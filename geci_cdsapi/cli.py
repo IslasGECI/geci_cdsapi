@@ -3,6 +3,8 @@ from geci_cdsapi.calculate_wind_speed import (
     read_and_calculate_wind_speed,
     write_windspeed_dataset_to_csv,
 )
+import geci_cdsapi
+
 import typer
 from pathlib import Path
 
@@ -27,4 +29,4 @@ def monthly_wind_average(
 
 @cli.command()
 def version():
-    print("0.1.0")
+    print(geci_cdsapi.__version__)
