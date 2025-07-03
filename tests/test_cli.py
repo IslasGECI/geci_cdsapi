@@ -30,4 +30,5 @@ def test_monthly_wind_average():
             output_path,
         ],
     )
+    gtt.assert_exist(output_path)
     assert result.exit_code == 0
