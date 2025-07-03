@@ -9,6 +9,7 @@ from geci_cdsapi.calculate_wind_speed import (
 import geci_test_tools as gtt
 import xarray as xr
 import numpy as np
+import pandas as pd
 
 nc_dataset = xr.open_dataset("tests/data/era5_wind_sanbenito_2013.nc")
 
