@@ -14,8 +14,14 @@ requires = [
 	"dask",
 	"typer[all]",
 	"xarray[io]",
+	"numpy",
+	"pandas",
+	"pandas-stubs",
 ]
 requires-python=">=3.9"
+
+[tool.flit.scripts]
+geci-cdsapi = "geci_cdsapi.cli:cli"
 
 [tool.mutmut]
 paths_to_mutate = [ "geci_cdsapi/" ]
