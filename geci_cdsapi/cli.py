@@ -27,4 +27,4 @@ def monthly_wind_average(
 
 @cli.command()
 def version():
-    return "0.1.0"
+    print("0.1.0")

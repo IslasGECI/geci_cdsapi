@@ -14,7 +14,7 @@ def test_version():
     assert result.exit_code == 0
     assert " version " in gtt.strip_ansi_sequences(result.stdout)
     result = runner.invoke(cli, ["version"])
-    assert " 0.1.0 " in gtt.strip_ansi_sequences(result.stdout)
+    assert "0.1.0\n" in gtt.strip_ansi_sequences(result.stdout)
 
 
 @pytest.mark.skipif(os.getenv("GITHUB_ACTIONS") is None, reason="Solo se ejecuta en GitHub Actions")
