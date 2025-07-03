@@ -3,7 +3,10 @@ from geci_cdsapi.calculate_wind_speed import (
     calculate_wind_speed,
     mean_by_month,
     read_and_calculate_wind_speed,
+    write_windspeed_dataset_to_csv,
 )
+
+import geci_test_tools as gtt
 import xarray as xr
 import numpy as np
 
@@ -55,6 +58,12 @@ dataset = xr.Dataset(
         "longitude": [30, 40, 50, 60],
     },
 )
+
+
+def test_write_windspeed_dataset_to_csv():
+    output_path = "tests/data/monthly_wind_speed.csv"
+    write_windspeed_dataset_to_csv(dataset, output_path)
+    gtt.assert_file_exists(output_path)
 
 
 def test_calculate_wind_speed():
