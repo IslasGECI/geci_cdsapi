@@ -1,8 +1,10 @@
+from geci_cdsapi.init_client import download_wind_netcdf_by_year
 from geci_cdsapi.calculate_wind_speed import (
     read_and_calculate_wind_speed,
     write_windspeed_dataset_to_csv,
 )
 import typer
+from pathlib import Path
 
 
 cli = typer.Typer()
@@ -15,7 +17,11 @@ def monthly_wind_average(
     island: str = typer.Option(),
     output_path: str = typer.Option(),
 ):
-    wind_speed_dataset = read_and_calculate_wind_speed([end_year], island, "tests/data")
+    years = [year for year in range(start_year, end_year + 1)]
+    path = Path(output_path)
+    directory_path = path.parent
+    download_wind_netcdf_by_year(years, island, directory_path)
+    wind_speed_dataset = read_and_calculate_wind_speed(years, island, directory_path)
     write_windspeed_dataset_to_csv(wind_speed_dataset, output_path)
 
 

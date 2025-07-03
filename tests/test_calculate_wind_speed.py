@@ -54,6 +54,7 @@ def test_write_windspeed_dataset_to_csv():
     expected_columns = ["Índice", "Año", "Mes/Periodo", "Valor"]
     assert list(obtained.columns) == expected_columns
     assert obtained["Mes/Periodo"][0] == "Jan"
+    gtt.if_exist_remove(output_path)
 
 
 def test_calculate_monthly_wind_speed():
