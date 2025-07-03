@@ -1,6 +1,8 @@
 from geci_cdsapi.cli import cli
 
 from typer.testing import CliRunner
+import pytest
+import os
 
 import geci_test_tools as gtt
 
@@ -11,8 +13,11 @@ def test_version():
     result = runner.invoke(cli, ["--help"])
     assert result.exit_code == 0
     assert " version " in gtt.strip_ansi_sequences(result.stdout)
+    result = runner.invoke(cli, ["version"])
+    assert " 0.1.0 " in gtt.strip_ansi_sequences(result.stdout)
 
 
+@pytest.mark.skipif(os.getenv("GITHUB_ACTIONS") is None, reason="Solo se ejecuta en GitHub Actions")
 def test_monthly_wind_average():
     output_path = "tests/wind_average.csv"
     gtt.if_exist_remove(output_path)
