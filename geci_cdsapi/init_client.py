@@ -2,10 +2,11 @@ import cdsapi
 import os
 
 
-def download_wind_netcdf_by_year(year, output_path):
+def download_wind_netcdf_by_year(year, island, directory_path):
     client = init_client()
     dataset = "reanalysis-era5-single-levels"
-    request_params = construct_request(year)
+    request_params = construct_request(year, island)
+    output_path = f"{directory_path}/{island}_wind_{year}.nc"
     client.retrieve(dataset, request_params, output_path)
 
 
