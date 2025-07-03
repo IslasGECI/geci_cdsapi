@@ -13,7 +13,7 @@ from pathlib import Path
 def test_download_wind_netcdf_by_year():
     year = 2013
     island = "San Benito"
-    directory_path = "tests/"
+    directory_path = "tests"
     download_wind_netcdf_by_year(year, island, directory_path)
     path = Path(directory_path)
     data_2013 = path / "San_Benito_wind_2013.nc"
