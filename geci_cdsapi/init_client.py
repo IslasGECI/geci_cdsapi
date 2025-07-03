@@ -9,8 +9,8 @@ def download_wind_netcdf_by_year(year, output_path):
     client.retrieve(dataset, request_params, output_path)
 
 
-def construct_request(start_year, end_year, island):
-    years = [str(year) for year in range(start_year, end_year + 1)]
+def construct_request(year, island):
+    years = [str(year)]
     areas = {"San Benito": [32.35, -120.3, 24.25, -110.9]}
     request_params = {
         "product_type": "reanalysis",
