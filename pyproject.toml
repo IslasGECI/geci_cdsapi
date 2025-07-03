@@ -11,6 +11,7 @@ home-page = "https://github.com/IslasGECI/geci_cdsapi"
 module = "geci_cdsapi"
 requires = [
 	"cdsapi",
+	"dask",
 	"typer[all]",
 	"xarray[io]",
 ]
